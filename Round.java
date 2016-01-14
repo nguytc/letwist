@@ -1,3 +1,10 @@
+/* Tim Nguyen 2016
+
+Round keeps all relevant information for the current round of the game.
+This includes the letters for the round, the words that can be formed from the
+letters, what words have been found by the user
+*/
+
 import java.util.LinkedList;
 import java.util.HashMap;
 import java.util.Random;

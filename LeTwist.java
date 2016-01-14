@@ -1,7 +1,10 @@
-/*
-Tim Nguyen
-2016
-LeTwist: Anagram game
+/* Tim Nguyen 2016
+LeTwist
+
+LeTwist is a letter twisting game that tests your ability to form valid words
+from the given letters. Score points by forming words - the larger the word,
+the more points given! Advance through the rounds by finding one of the max
+letter words. Keep going until you cannot advance any further.
 */
 
 import java.util.HashMap;
@@ -11,7 +14,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;
-import java.util.Scanner;
 import java.lang.StringBuilder;
 
 public class LeTwist {
@@ -263,65 +265,5 @@ public class LeTwist {
                         "\"help me\" - to show this help dialogue\n";
 
         System.out.println(display);
-    }
-
-    // MAIN ===================================================================
-    public static void main(String[] args) {
-        /* The driver should be extracted out to own class eventually */
-
-        Scanner scanner = new Scanner(System.in);
-        LeTwist game = new LeTwist();
-
-        do {
-            String msg = "";
-            game.newRound();
-            int startTime = (int)System.currentTimeMillis() / 1000;
-            int currentTime = (int)System.currentTimeMillis() / 1000;
-
-            while (currentTime - startTime < 120) {
-                game.clearScreen();
-
-                int timeLeft = 120 - (currentTime - startTime);
-                game.roundDisplay(timeLeft, false, msg);
-
-                boolean nextRound = false;
-                while (true) {
-                    String input = scanner.nextLine().toLowerCase();
-
-                    if (input.equals("next round")) {
-                        nextRound = true;
-                    } else if (input.equals("shuffle me")) {
-                        game.shuffleLetters();
-                        msg = "Shuffled";
-                    } else if (input.equals("exit game")) {
-                        game.clearScreen();
-                        game.roundDisplay(0, true, "Exiting the game");
-                        scanner.nextLine();
-                        return;
-                    } else if (input.equals("impossible word")) {
-                        game.cheatTheTarget();
-                        msg = "You filthy cheater";
-                    } else if (input.equals("help me")) {
-                        game.printHelp();
-                        continue;
-                    } else {
-                        boolean result = game.guess(input);
-                        if (result) msg = "Nice";
-                        else msg = "";
-                    }
-                    break;
-                }
-
-                if (nextRound) break;
-                currentTime = (int)System.currentTimeMillis() / 1000;
-            }
-
-            game.clearScreen();
-            if (game.qualifyForNextRound()) msg = "You qualify for the next round!";
-            else msg = "Game over";
-            game.roundDisplay(0, true, msg);
-            scanner.nextLine();
-
-        } while(game.qualifyForNextRound());
     }
 }
