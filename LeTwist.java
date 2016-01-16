@@ -19,7 +19,7 @@ import java.lang.StringBuilder;
 public class LeTwist {
     private HashMap<Integer, LinkedList<String>> words; // all possible words
 
-    private int targetWordSize; // maximum word length
+    private int targetWordSize; // maximum word length. default to 7
     private int score; // player's current score
     private Round round; // information for the current round
     private int rounds; // the current round number
@@ -30,7 +30,7 @@ public class LeTwist {
         String wordsFile = "words.txt";
         preprocess(wordsFile);
 
-        targetWordSize = 7;
+        targetWordSize = 7; // default
         score = 0;
         rounds = 0;
     }
@@ -259,16 +259,16 @@ public class LeTwist {
 
         String instruct = "LeTwist: Letter Twisting Fun\nBy Tim Nguyen\n\n"
             + "Instructions:\n"
-            + "Make valid words from the letters provided.\n"
-            + "Score points for each word found.\n"
-            + "Advance to next round by finding one of the max length words.\n"
-            + "You have 2 minutes per round to get as many words as you can!\n"
+            + "   Make valid words from the letters provided.\n"
+            + "   Score points for each word found.\n"
+            + "   Advance to next round by finding one of the max length words.\n"
+            + "   You have 2 minutes per round to get as many words as you can!\n"
             + "\nPossible Actions to Enter:\n"
-            + "guess - a word that can be made out of the letters\n"
-            + "\"next round\" - to go to the next round\n"
-            + "\"exit game\" - to exit the game\n"
-            + "\"shuffle me\" - to shuffle your letters\n"
-            + "\"help me\" - to show this help dialogue\n";
+            + "   A word that can be made out of the letters\n"
+            + "   \"next round\" - to go to the next round\n"
+            + "   \"exit game\" - to exit the game\n"
+            + "   \"shuffle me\" - to shuffle your letters\n"
+            + "   \"help me\" - to show this help dialogue\n";
 
         System.out.println(instruct);
     }
