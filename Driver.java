@@ -8,14 +8,48 @@ function.
 import java.util.Scanner;
 
 public class Driver {
+    // SETTINGS ===============================================================
+    public static void settings(Scanner scanner, LeTwist game) {
+        /* Allow the user to set the maximum word length and time per round */
+
+        // Set the maximum word length
+        System.out.println("\nMaximum word length? Enter 6 to 10");
+        String in = scanner.nextLine();
+
+        int maxLength = Integer.parseInt(in);
+        if (maxLength < 6 || maxLength > 10) System.out.println("Invalid");
+        else game.setTargetWordSize(maxLength);
+
+        System.out.println("Max word length will be " + game.getTargetWordSize() + "\n");
+
+        // Set the time per round
+        System.out.println("Minutes per round? Enter 1 to 10");
+        in = scanner.nextLine();
+
+        int minPerRound = Integer.parseInt(in);
+        if (minPerRound < 1 || minPerRound > 10) System.out.println("Invalid");
+        else game.setMinutesPerRound(minPerRound);
+
+        System.out.println("Minutes per round will be " + game.getMinutesPerRound() + "\n");
+    }
+
     // MAIN ===================================================================
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         LeTwist game = new LeTwist();
         game.clearScreen();
         game.instructions();
-        System.out.println("Press Enter to Begin");
-        scanner.nextLine();
+
+        String in;
+        do {
+            System.out.println("Press Enter to begin");
+            // handle the settings here
+            in = scanner.nextLine().toLowerCase();
+            if (in.equals("settings")) settings(scanner, game);
+        } while(in.equals("settings"));
+
+        int minPerRound = game.getMinutesPerRound();
+        int secPerRound = minPerRound * 60;
 
         boolean playAgain = true;
 
@@ -26,10 +60,10 @@ public class Driver {
                 int startTime = (int)System.currentTimeMillis() / 1000;
                 int currentTime = (int)System.currentTimeMillis() / 1000;
 
-                while (currentTime - startTime < 120) {
+                while (currentTime - startTime < secPerRound) {
                     game.clearScreen();
 
-                    int timeLeft = 120 - (currentTime - startTime);
+                    int timeLeft = secPerRound - (currentTime - startTime);
                     game.roundDisplay(timeLeft, false, msg);
 
                     boolean nextRound = false;

@@ -23,6 +23,7 @@ public class LeTwist {
     private int score; // player's current score
     private Round round; // information for the current round
     private int rounds; // the current round number
+    private int minutesPerRound; // minutes user will have for each round
 
     public LeTwist() {
         words = new HashMap<Integer, LinkedList<String>>();
@@ -33,6 +34,7 @@ public class LeTwist {
         targetWordSize = 7; // default
         score = 0;
         rounds = 0;
+        minutesPerRound = 2;
     }
 
     // PREPROCESS =============================================================
@@ -251,6 +253,29 @@ public class LeTwist {
 
         String target = round.getTarget();
         guess(target);
+    }
+
+    // SETTERS ================================================================
+    public void setTargetWordSize(int size) {
+        /*  Set how many letters will be used and how large the max letter
+            word is */
+
+        if (size >= 6 && size <= 10) targetWordSize = size;
+    }
+
+    public void setMinutesPerRound(int minutes) {
+        /* Set how much time the player will get to form words each round */
+
+        if (minutes >= 1 && minutes <= 10) minutesPerRound = minutes;
+    }
+
+    // GETTERS ================================================================
+    public int getTargetWordSize() {
+        return targetWordSize;
+    }
+
+    public int getMinutesPerRound() {
+        return minutesPerRound;
     }
 
     // INSTRUCTIONS ===========================================================
