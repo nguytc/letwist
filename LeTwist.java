@@ -183,8 +183,8 @@ public class LeTwist {
             LinkedList<String> possible = anagrams.get(key);
             for (String focus : possible) {
                 // display the entire word if already found or end of round
-                if (found.get(focus)) display.append(focus);
-                else if (end) display.append(focus.toUpperCase());
+                if (found.get(focus)) display.append(focus.toUpperCase());
+                else if (end) display.append(focus);
                 else { // if not found, mask words with dashes that show length
                     for (int i = 0; i < focus.length(); i++) {
                         display.append("-");
