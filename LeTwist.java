@@ -253,17 +253,23 @@ public class LeTwist {
         guess(target);
     }
 
-    // PRINT HELP =============================================================
-    public void printHelp() {
-        /* Print possible commands the user can input */
+    // INSTRUCTIONS ===========================================================
+    public void instructions() {
+        /* Show the instructions for the game */
 
-        String display = "\nEnter:\n" +
-                        "guess - a word that can be made out of the letters\n" +
-                        "\"next round\" - to go to the next round\n" +
-                        "\"exit game\" - to exit the game\n" +
-                        "\"shuffle me\" - to shuffle your letters\n" +
-                        "\"help me\" - to show this help dialogue\n";
+        String instruct = "LeTwist: Letter Twisting Fun\nBy Tim Nguyen\n\n"
+            + "Instructions:\n"
+            + "Make valid words from the letters provided.\n"
+            + "Score points for each word found.\n"
+            + "Advance to next round by finding one of the max length words.\n"
+            + "You have 2 minutes per round to get as many words as you can!\n"
+            + "\nPossible Actions to Enter:\n"
+            + "guess - a word that can be made out of the letters\n"
+            + "\"next round\" - to go to the next round\n"
+            + "\"exit game\" - to exit the game\n"
+            + "\"shuffle me\" - to shuffle your letters\n"
+            + "\"help me\" - to show this help dialogue\n";
 
-        System.out.println(display);
+        System.out.println(instruct);
     }
 }

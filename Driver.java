@@ -12,6 +12,10 @@ public class Driver {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         LeTwist game = new LeTwist();
+        game.clearScreen();
+        game.instructions();
+        System.out.println("Press Enter to Begin");
+        scanner.nextLine();
 
         do {
             String msg = "";
@@ -43,7 +47,7 @@ public class Driver {
                         game.cheatTheTarget();
                         msg = "You filthy cheater";
                     } else if (input.equals("help me")) {
-                        game.printHelp();
+                        game.instructions();
                         continue;
                     } else {
                         boolean result = game.guess(input);
