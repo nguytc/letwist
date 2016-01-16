@@ -13,6 +13,7 @@ Java is required to run this game.
 
 ## How to Start Game
 Compile the Java files and start the game:  
+
     % javac Driver.java  
     % java Driver
 
@@ -28,5 +29,5 @@ Possible Actions to Enter:
 3. "exit game" - to exit the game  
 4. "shuffle me" - to shuffle your letters  
 5. "help me" - to show this help dialogue  
-  
+
 Contact Tim with any questions, comments, or suggestions at nguy1877@umn.edu
