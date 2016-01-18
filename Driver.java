@@ -23,11 +23,11 @@ public class Driver {
         System.out.println("Max word length will be " + game.getTargetWordSize() + "\n");
 
         // Set the time per round
-        System.out.println("Minutes per round? Enter 1 to 10");
+        System.out.println("Minutes per round? Enter 1 to 9");
         in = scanner.nextLine();
 
         int minPerRound = Integer.parseInt(in);
-        if (minPerRound < 1 || minPerRound > 10) System.out.println("Invalid");
+        if (minPerRound < 1 || minPerRound > 9) System.out.println("Invalid");
         else game.setMinutesPerRound(minPerRound);
 
         System.out.println("Minutes per round will be " + game.getMinutesPerRound() + "\n");

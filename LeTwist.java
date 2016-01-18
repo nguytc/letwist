@@ -7,11 +7,11 @@ the more points given! Advance through the rounds by finding one of the max
 letter words. Keep going until you cannot advance any further.
 */
 
-import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
 import java.lang.StringBuilder;
@@ -202,7 +202,8 @@ public class LeTwist {
                 }
             }
         }
-        display.append("\n\n");
+        if (column != 0) display.append("\n");
+        display.append("\n");
 
         // display the letters that can be used
         for (int i = 0; i < letters.length; i++) {
@@ -266,7 +267,7 @@ public class LeTwist {
     public void setMinutesPerRound(int minutes) {
         /* Set how much time the player will get to form words each round */
 
-        if (minutes >= 1 && minutes <= 10) minutesPerRound = minutes;
+        if (minutes >= 1 && minutes <= 9) minutesPerRound = minutes;
     }
 
     // GETTERS ================================================================
