@@ -7,56 +7,24 @@ the more points given! Advance through the rounds by finding one of the max
 letter words. Keep going until you cannot advance any further.
 */
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Random;
 import java.lang.StringBuilder;
 
 public class LeTwist {
-    private HashMap<Integer, LinkedList<String>> words; // all possible words
-
     private int targetWordSize; // maximum word length. default to 7
-    private int score; // player's current score
     private Round round; // information for the current round
+    private Words words; // provides all possible words
+    private int score; // player's current score
     private int rounds; // the current round number
     private int minutesPerRound; // minutes user will have for each round
 
     public LeTwist() {
-        words = new HashMap<Integer, LinkedList<String>>();
-
-        String wordsFile = "words.txt";
-        preprocess(wordsFile);
-
         targetWordSize = 7; // default
         minutesPerRound = 2;
-
-        resetGame();
-    }
-
-    // PREPROCESS =============================================================
-    public void preprocess(String wordsFile) {
-        /*  Obtain the words from the list of words given in the file.
-            Store them in a hashmap called words. The key will be the length of
-            the words and the value will be a linked list of the words with the
-            key as the length. */
-
-        try (BufferedReader br = new BufferedReader(new FileReader(wordsFile))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                int len = line.length();
-                LinkedList<String> current;
-
-                if (words.containsKey(len)) current = words.get(len);
-                else current = new LinkedList<String>();
-
-                current.add(line);
-                words.put(len, current);
-            }
-        } catch (Exception e) {}
+        rounds = 0;
+        score = 0;
+        words = new Words();
     }
 
     // TARGET =================================================================
@@ -65,12 +33,7 @@ public class LeTwist {
             target word. The target word serves as the basis for the rest of
             the words that can be found, since its letters are used. */
 
-        Random random = new Random();
-
-        LinkedList<String> possible = words.get(targetWordSize);
-        int index = random.nextInt(possible.size());
-        String word = possible.get(index);
-
+        String word = words.randomWord(targetWordSize);
         return word;
     }
 
@@ -80,12 +43,13 @@ public class LeTwist {
             of the target word. */
 
         HashMap<Integer, LinkedList<String>> anagrams = new HashMap<Integer, LinkedList<String>>();
+        HashMap<Integer, LinkedList<String>> allWords = words.getWords();
 
-        for (int len : words.keySet()) {
+        for (int len : allWords.keySet()) {
             // Smallest word length will be 3
             if (len > targetWordSize || len <= 2) continue;
 
-            LinkedList<String> possible = words.get(len);
+            LinkedList<String> possible = allWords.get(len);
 
             for (String focus : possible) {
                 if (contains(target, focus)) {
