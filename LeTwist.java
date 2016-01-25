@@ -32,9 +32,9 @@ public class LeTwist {
         preprocess(wordsFile);
 
         targetWordSize = 7; // default
-        score = 0;
-        rounds = 0;
         minutesPerRound = 2;
+
+        resetGame();
     }
 
     // PREPROCESS =============================================================
@@ -254,6 +254,13 @@ public class LeTwist {
 
         String target = round.getTarget();
         guess(target);
+    }
+
+    // RESET GAME =============================================================
+    public void resetGame() {
+        /* Reset the game for a new game */
+        rounds = 0;
+        score = 0;
     }
 
     // SETTERS ================================================================

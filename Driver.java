@@ -54,6 +54,7 @@ public class Driver {
         boolean playAgain = true;
 
         while (playAgain) {
+            game.resetGame();
             do {
                 String msg = "";
                 game.newRound();
